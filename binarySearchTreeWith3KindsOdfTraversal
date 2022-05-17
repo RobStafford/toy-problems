@@ -1,0 +1,73 @@
+class Node{
+    constructor(data) {
+        this.data = data;
+        this.left = null;
+        this.right = null;
+    }
+}
+
+class BinarySearchTree{
+    constructor(){
+        this.root = null; 
+    }
+    
+    insert(data){
+       let node = new Node(data);
+        if (this.root == null) {
+            this.root = node;
+        } else {
+            this.insertNode(this.root, node);
+        }
+    }
+    
+    insertNode(root, newNode) {
+        //recursively work through the tree, looking for the appropriate empty spot for a new node
+        if (newNode.data < root.data) {
+            if (root.left == null) {
+                root.left = newNode;
+            } else {
+                this.insertNode(root.left, newNode);
+            }
+        }else if (newNode.data > root.data) {
+            if (root.right == null) {
+                root.right = newNode;
+            } else {
+                this.insertNode(root.right, newNode);
+            }
+        }
+    }
+
+    getRootNode() {
+        return this.root;
+    }
+
+    preorder(root) {
+        if (root != null) {
+            //depth first, left to right, starting at the root, working down
+            console.log(root.data);
+            this.preorder(root.left);
+            this.preorder(root.right);
+        }
+    }
+
+    inorder(root) {
+        if (root != null) {
+            //work down to the leftmost bottom node, then work back up, 
+            //staying as low in the tree as you can, as long as you can
+            //values should print in numerical order
+            this.inorder(root.left);
+            console.log(root.data);
+            this.inorder(root.right);
+        }
+    }
+
+    postorder(root) {
+        if (root != null) {
+            //same as inorder. but leaves root til last
+            this.postorder(root.left);
+            this.postorder(root.right);
+            console.log(root.data);
+        }
+    }
+    
+}
