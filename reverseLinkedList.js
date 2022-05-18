@@ -16,11 +16,11 @@ var reverseList = function(head) {
     let current = head;
     //do while you haven't finished moving through list
     while (current) {
-        //set next to next of current 9to store as original ref is disappearing)
+        //set next to next of current (to store as original ref is disappearing)
         const next = current.next;
         //reverse pointer
         current.next = previous;
-        //now that we've changed pointer, call the one we just changed previous
+        //now that we've changed pointer, call the one we just changed to previous
         previous = current;
         //we saved next so we can find the old next, start over
         current = next;        
